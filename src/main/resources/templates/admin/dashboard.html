@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard Admin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Dashboard Administrateur</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        <!-- Carte : Gérer les Agents -->
+        <div class="col">
+            <div class="card h-100 text-center shadow">
+                <div class="card-body">
+                    <i class="bi bi-people-fill display-4 text-primary mb-3"></i>
+                    <h5 class="card-title">Gérer les Agents</h5>
+                    <a th:href="@{/admin/agents}" class="btn btn-outline-primary mt-2">Accéder</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte : Gérer les Shifts -->
+        <div class="col">
+            <div class="card h-100 text-center shadow">
+                <div class="card-body">
+                    <i class="bi bi-calendar-week-fill display-4 text-primary mb-3"></i>
+                    <h5 class="card-title">Gérer les Plannings</h5>
+                    <a th:href="@{/admin/shifts}" class="btn btn-outline-primary mt-2">Accéder</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte : Générer le Planning -->
+        <div class="col">
+            <div class="card h-100 text-center shadow">
+                <div class="card-body">
+                    <i class="bi bi-gear-fill display-4 text-primary mb-3"></i>
+                    <h5 class="card-title">Générer le Planning</h5>
+                    <a th:href="@{/admin/planning}" class="btn btn-outline-primary mt-2">Générer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte : Gérer les Sites -->
+        <!-- Carte : Gérer les Sites -->
+        <div class="col">
+            <div class="card h-100 text-center shadow">
+                <div class="card-body">
+                    <i class="bi bi-building display-4 text-primary mb-3"></i>
+                    <h5 class="card-title">Gérer les Sites</h5>
+                    <a th:href="@{/admin/sites}" class="btn btn-outline-primary mt-2">Accéder</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Carte : Déconnexion -->
+        <div class="col">
+            <div class="card h-100 text-center shadow">
+                <div class="card-body">
+                    <i class="bi bi-box-arrow-right display-4 text-danger mb-3"></i>
+                    <h5 class="card-title">Se déconnecter</h5>
+                    <a th:href="@{/logout}" class="btn btn-outline-danger mt-2">Déconnexion</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

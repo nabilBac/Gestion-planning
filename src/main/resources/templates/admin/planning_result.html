@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planning généré</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">
+        Planning de la semaine du <span th:text="${lundi}"></span> - Site : <span th:text="${site.nom}"></span>
+    </h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th>Date</th>
+                <th>Agent</th>
+                <th>Heure début</th>
+                <th>Heure fin</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shift : ${shifts}">
+                <td th:text="${shift.date}"></td>
+                <td th:text="${shift.agent.nom}"></td>
+                <td th:text="${shift.heureDebut}"></td>
+                <td th:text="${shift.heureFin}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a th:href="@{/admin/planning}" class="btn btn-secondary mt-3">Retour</a>
+</div>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

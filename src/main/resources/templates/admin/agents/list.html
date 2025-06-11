@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Liste des Agents</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Liste des Agents</h1>
+
+    <a href="/agents/create" class="btn btn-primary mb-3">Ajouter un agent</a>
+
+    <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Rôle</th>
+            <th>Actions</th> <!-- Colonne pour actions -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="agent : ${agents}">
+            <td th:text="${agent.id}">1</td>
+            <td th:text="${agent.nom}">Dupont</td>
+            <td th:text="${agent.prenom}">Jean</td>
+            <td th:text="${agent.email}">jean.dupont@example.com</td>
+            <td th:text="${agent.telephone}">0123456789</td>
+            <td>
+  <span th:switch="${agent.role.name()}">
+    <span th:case="'ROLE_ADMIN'" class="badge bg-danger">Admin</span>
+    <span th:case="'ROLE_AGENT'" class="badge bg-primary">Agent</span>
+    <span th:case="*" class="badge bg-secondary">Inconnu</span>
+</span>
+
+            </td>
+
+
+            <td>
+                <a th:href="@{/agents/edit/{id}(id=${agent.id})}" class="btn btn-sm btn-warning me-1">Modifier</a>
+                <a th:href="@{/agents/delete/{id}(id=${agent.id})}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Confirmer la suppression ?');">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/admin}" class="btn btn-secondary me-2">← Retour au dashboard</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

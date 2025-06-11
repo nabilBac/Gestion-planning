@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Créer un Shift</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container mt-5">
+  <h1 class="mb-4">Créer un Shift</h1>
+
+  <form th:action="@{/admin/shifts/create}" th:object="${shift}" method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="date" class="form-label">Date :</label>
+      <input type="date" id="date" th:field="*{date}" class="form-control" required />
+      <div class="invalid-feedback">
+        Veuillez renseigner la date.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="heureDebut" class="form-label">Heure début :</label>
+      <input type="time" id="heureDebut" th:field="*{heureDebut}" class="form-control" required />
+      <div class="invalid-feedback">
+        Veuillez renseigner l'heure de début.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="heureFin" class="form-label">Heure fin :</label>
+      <input type="time" id="heureFin" th:field="*{heureFin}" class="form-control" required />
+      <div class="invalid-feedback">
+        Veuillez renseigner l'heure de fin.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="agent" class="form-label">Agent :</label>
+      <select id="agent" th:field="*{agent}" class="form-select" required>
+        <option value="" disabled selected>Choisissez un agent</option>
+        <option th:each="agent : ${agents}" th:value="${agent}" th:text="${agent.nom + ' ' + agent.prenom}"></option>
+      </select>
+      <div class="invalid-feedback">
+        Veuillez sélectionner un agent.
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="site" class="form-label">Site :</label>
+      <select id="site" th:field="*{site}" class="form-select" required>
+        <option value="" disabled selected>Choisissez un site</option>
+        <option th:each="site : ${sites}" th:value="${site}" th:text="${site.nom}"></option>
+      </select>
+      <div class="invalid-feedback">
+        Veuillez sélectionner un site.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <a th:href="@{/admin/shifts}" class="btn btn-secondary ms-2">Retour à la liste</a>
+  </form>
+</div>
+
+<!-- Bootstrap 5 JS Bundle pour la validation -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Validation Bootstrap custom
+  (() => {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+</script>
+</body>
+</html>
